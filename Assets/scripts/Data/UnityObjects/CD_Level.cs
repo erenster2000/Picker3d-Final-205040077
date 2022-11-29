@@ -8,5 +8,6 @@ namespace Data.UnityObjects
     public class CD_Level : ScriptableObject
     {
         public List<LevelData> LevelList = new List<LevelData>();
+        
     }
 }

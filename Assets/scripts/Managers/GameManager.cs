@@ -8,6 +8,7 @@ namespace Managers
     {
         #region Self Variables
 
+        
         #region Serialized Variables
 
         [SerializeField] private GameStates states;

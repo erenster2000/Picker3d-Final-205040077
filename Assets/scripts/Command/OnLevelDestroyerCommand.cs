@@ -9,7 +9,9 @@ namespace Command
         public OnLevelDestroyerCommand(Transform levelHolder)
         {
             
+            
             _levelHolder = levelHolder;
+            
         }
 
 
