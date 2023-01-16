@@ -39,10 +39,8 @@ public class ES3Postprocessor : UnityEditor.AssetModificationProcessor
         //ES3Editor.ES3Window.OpenEditorWindowOnStart();
 
 #if UNITY_2017_2_OR_NEWER
-        EditorApplication.playModeStateChanged -= PlayModeStateChanged;
         EditorApplication.playModeStateChanged += PlayModeStateChanged;
 #else
-        EditorApplication.playmodeStateChanged -= PlaymodeStateChanged;
         EditorApplication.playmodeStateChanged += PlaymodeStateChanged;
 #endif
     }
@@ -54,20 +52,10 @@ public class ES3Postprocessor : UnityEditor.AssetModificationProcessor
         if (refreshed) // If we've already refreshed, do nothing.
             return;
 
-        if (ES3Settings.defaultSettingsScriptableObject.autoUpdateReferences)
+        if (RefMgr != null && ES3Settings.defaultSettingsScriptableObject.autoUpdateReferences)
         {
-            for (int i = 0; i < SceneManager.sceneCount; i++)
-            {
-                var scene = SceneManager.GetSceneAt(i);
-                if (scene.isLoaded)
-                {
-                    var mgr = (ES3ReferenceMgr)ES3ReferenceMgr.GetManagerFromScene(SceneManager.GetSceneAt(i));
-                    if (mgr != null)
-                        mgr.RefreshDependencies(isEnteringPlayMode);
-                }
-            }
+            RefMgr.RefreshDependencies(isEnteringPlayMode);
         }
-
         UpdateAssembliesContainingES3Types();
         refreshed = true;
     }
@@ -122,9 +110,6 @@ public class ES3Postprocessor : UnityEditor.AssetModificationProcessor
             }
             catch { }
         }
-
-        // Sort it alphabetically so that the order isn't constantly changing, which can affect version control.
-        assemblyNames.Sort();
 
         // Only update if the list has changed.
         for (int i = 0; i < currentAssemblyNames.Length; i++)

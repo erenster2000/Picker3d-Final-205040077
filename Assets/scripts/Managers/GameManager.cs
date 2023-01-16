@@ -1,4 +1,4 @@
-using Enums;
+﻿using Enums;
 using Signals;
 using UnityEngine;
 
@@ -8,7 +8,6 @@ namespace Managers
     {
         #region Self Variables
 
-        
         #region Serialized Variables
 
         [SerializeField] private GameStates states;

@@ -1,4 +1,4 @@
-using Command;
+﻿using Command;
 using Data.UnityObjects;
 using Data.ValueObjects;
 using Signals;
@@ -66,7 +66,7 @@ namespace Managers
 
         private void Start()
         {
-            _levelLoader.Execute(levelID);
+            CoreGameSignals.Instance.onLevelInitialize?.Invoke(levelID);
         }
 
         private LevelData GetLevelData() => Resources.Load<CD_Level>("Data/CD_Level").LevelList[levelID];
@@ -84,7 +84,6 @@ namespace Managers
             CoreGameSignals.Instance.onClearActiveLevel?.Invoke();
             CoreGameSignals.Instance.onReset?.Invoke();
             CoreGameSignals.Instance.onLevelInitialize?.Invoke(levelID);
-            
         }
 
         private void OnRestartLevel()

@@ -90,34 +90,30 @@ namespace ES3PlayMaker
 		public override bool OnGUI()
 		{
 			base.OnGUI();
-            return DrawSettingsEditor();
-		}
 
-        public bool DrawSettingsEditor()
-        {
-            var action = target as ES3PlayMaker.SettingsAction;
-            if (action == null)
-                return false;
-            action.overrideDefaultSettings.Value = EditorGUILayout.ToggleLeft("Override Default Settings", action.overrideDefaultSettings.Value);
+			var action = target as ES3PlayMaker.SettingsAction;
+			if(action == null)
+				return false;
+			action.overrideDefaultSettings.Value = EditorGUILayout.ToggleLeft("Override Default Settings", action.overrideDefaultSettings.Value);
 
-            if (action.overrideDefaultSettings.Value)
-            {
-                EditorGUI.indentLevel++;
+			if(action.overrideDefaultSettings.Value)
+			{
+				EditorGUI.indentLevel++;
 
                 EditField("path");
                 EditField("location");
-                EditField("encryptionType");
-                EditField("encryptionPassword");
+				EditField("encryptionType");
+				EditField("encryptionPassword");
                 EditField("compressionType");
-                EditField("directory");
-                EditField("format");
-                EditField("bufferSize");
+				EditField("directory");
+				EditField("format");
+				EditField("bufferSize");
 
-                EditorGUI.indentLevel--;
-                EditorGUILayout.Space();
-            }
-            return GUI.changed;
-        }
+				EditorGUI.indentLevel--;
+				EditorGUILayout.Space();
+			}
+			return GUI.changed;
+		}
 	}
 
 	public abstract class KeyValueSettingsEditor : SettingsEditor
@@ -152,25 +148,10 @@ namespace ES3PlayMaker
     }
 #endregion
 
-#if !PLAYMAKER_1_9_OR_NEWER
 #region Save Actions
 
-    /*[CustomActionEditor(typeof(ES3PlayMaker.Save))]
-	public class SaveEditor : KeyValueSettingsEditor{}*/
-
-    /*[CustomActionEditor(typeof(ES3PlayMaker.SaveMultiple))]
-    public class SaveMultipleEditor : SettingsEditor
-    {
-        public override bool OnGUI()
-        {
-            return base.OnGUI();
-        }
-
-        public override void DrawGUI()
-        {
-            DrawDefaultInspector();
-        }
-    }*/
+    [CustomActionEditor(typeof(ES3PlayMaker.Save))]
+	public class SaveEditor : KeyValueSettingsEditor{}
 
     [CustomActionEditor(typeof(ES3PlayMaker.SaveAll))]
     public class SaveAllEditor : SettingsEditor
@@ -472,7 +453,7 @@ namespace ES3PlayMaker
 		}
 	}
 
-	/*[CustomActionEditor(typeof(ES3PlayMaker.ES3FileSave))]
+	[CustomActionEditor(typeof(ES3PlayMaker.ES3FileSave))]
 	public class ES3FileSaveEditor : SaveEditor
 	{
 		public override void DrawGUI()
@@ -480,7 +461,7 @@ namespace ES3PlayMaker
 			EditField("fsmES3File");
 			base.DrawGUI();
 		}
-	}*/
+	}
 
 	[CustomActionEditor(typeof(ES3PlayMaker.ES3FileLoad))]
 	public class ES3FileLoadEditor : LoadEditor
@@ -708,8 +689,7 @@ namespace ES3PlayMaker
 	{
 		protected override void DrawChildGUI()
 		{
-            EditField("path");
-            EditField("timestamp");
+			EditField("timestamp");
 			base.DrawChildGUI();
 		}
 	}
@@ -775,9 +755,9 @@ namespace ES3PlayMaker
         }
     }
 
-#endregion
+    #endregion
 
-#region Caching
+    #region Caching
 
     [CustomActionEditor(typeof(ES3PlayMaker.CacheFile))]
     public class CacheFileEditor : SettingsEditor
@@ -797,7 +777,6 @@ namespace ES3PlayMaker
         }
     }
 
-#endregion
-#endif
+    #endregion
 }
 #endif

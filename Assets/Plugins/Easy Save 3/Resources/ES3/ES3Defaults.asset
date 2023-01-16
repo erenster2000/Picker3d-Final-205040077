@@ -23,7 +23,6 @@ MonoBehaviour:
     prettyPrint: 1
     bufferSize: 2048
     saveChildren: 1
-    postprocessRawCachedData: 0
     typeChecking: 1
     safeReflection: 1
     memberReferenceMode: 0
@@ -32,6 +31,10 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp-firstpass
     - Assembly-CSharp
+    - Sirenix.OdinInspector.CompatibilityLayer
+    - PPv2URPConverters
+    - Sirenix.OdinInspector.CompatibilityLayer.Editor
+    - Sirenix.OdinInspector.Modules.UnityMathematics
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

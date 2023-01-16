@@ -135,12 +135,10 @@ namespace ES3Internal
                     // Delete any old backups.
                     DeleteFile(oldFileBackup);
                     // Rename the old file so we can restore it if it fails.
-                    CopyFile(settings.FullPath, oldFileBackup);
+                    MoveFile(settings.FullPath, oldFileBackup);
 
                     try
                     {
-                        // Delete the old file so that we can move it.
-                        DeleteFile(settings.FullPath);
                         // Now rename the temporary file to the name of the save file.
                         MoveFile(temporaryFilePath, settings.FullPath);
                     }

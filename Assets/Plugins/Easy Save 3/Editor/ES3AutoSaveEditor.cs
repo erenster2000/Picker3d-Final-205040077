@@ -14,6 +14,8 @@ namespace ES3Internal
             if (target == null)
                 return;
 
+            DrawDefaultInspector();
+
             if (GUILayout.Button("Manage Auto Save Settings"))
                 ES3Editor.ES3Window.InitAndShowAutoSave();
         }

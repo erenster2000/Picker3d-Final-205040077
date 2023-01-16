@@ -17,9 +17,8 @@ namespace ES3Types
 		protected override void WriteComponent(object obj, ES3Writer writer)
 		{
 			var instance = (UnityEngine.RectTransform)obj;
-
-            writer.WritePropertyByRef("parent", instance.parent);
-            writer.WriteProperty("anchorMin", instance.anchorMin, ES3Type_Vector2.Instance);
+			
+			writer.WriteProperty("anchorMin", instance.anchorMin, ES3Type_Vector2.Instance);
 			writer.WriteProperty("anchorMax", instance.anchorMax, ES3Type_Vector2.Instance);
 			writer.WriteProperty("anchoredPosition", instance.anchoredPosition, ES3Type_Vector2.Instance);
 			writer.WriteProperty("sizeDelta", instance.sizeDelta, ES3Type_Vector2.Instance);
@@ -29,6 +28,7 @@ namespace ES3Types
 			writer.WriteProperty("localPosition", instance.localPosition, ES3Type_Vector3.Instance);
 			writer.WriteProperty("localRotation", instance.localRotation, ES3Type_Quaternion.Instance);
 			writer.WriteProperty("localScale", instance.localScale, ES3Type_Vector3.Instance);
+			writer.WritePropertyByRef("parent", instance.parent);
 			writer.WriteProperty("hideFlags", instance.hideFlags);
 		}
 
