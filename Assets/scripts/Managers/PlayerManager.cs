@@ -5,6 +5,7 @@ using Data.ValueObjects;
 using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using System.Collections;
 
 namespace Managers
 {
@@ -16,7 +17,8 @@ namespace Managers
 
         internal byte StageID;
         internal ForceBallsToPoolCommand ForceCommand;
-
+		
+		public bool ending = false;
         #endregion
 
         #region Serialized Variables
@@ -28,7 +30,7 @@ namespace Managers
         #endregion
 
         #region Private Variables
-
+						
         [ShowInInspector] private PlayerData _data;
 
         #endregion
@@ -51,12 +53,18 @@ namespace Managers
         {
             return Resources.Load<CD_Player>("Data/CD_Player").Data;
         }
+        
+        
+        
 
-        private void SendDataToControllers()
+        public void SendDataToControllers()
         {
             movementController.SetMovementData(_data.MovementData);
             meshController.SetMeshData(_data.ScaleData);
         }
+        
+        
+        
 
         private void OnEnable()
         {
@@ -136,5 +144,18 @@ namespace Managers
             meshController.OnReset();
             physicsController.OnReset();
         }
+		
+		        
+
+        public void LastRunEnding()
+        {
+			 
+            _data.MovementData.EndSpeed();
+            SendDataToControllers();
+			ending = true;
+			
+            //Init();
+        }
+        
     }
 }

@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b69e2299ff35bf4a907a27760976c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ending: 0
   movementController: {fileID: 6467165669467704082}
   physicsController: {fileID: 6467165668857814204}
   meshController: {fileID: 6467165668329583645}

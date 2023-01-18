@@ -4,11 +4,15 @@ using Managers;
 using Sirenix.OdinInspector;
 using Unity.Mathematics;
 using UnityEngine;
+using Command.Player;
 
 namespace Controllers.Player
 {
     public class PlayerMovementController : MonoBehaviour
     {
+        
+        
+        
         #region Self Variables
 
         #region Serialized Variables
@@ -37,6 +41,10 @@ namespace Controllers.Player
         {
             _data = movementData;
         }
+        internal void SetMovementDataEnd(MovementData movementData)
+        {
+            _data = movementData;
+        }
 
         private void FixedUpdate()
         {
@@ -54,6 +62,18 @@ namespace Controllers.Player
             {
                 StopPlayerHorizontaly();
             }
+
+            if (manager.ending == true)
+            {   
+                if(_data.ForwardSpeed >= 0)
+                {
+                    _data.ForwardSpeed -= Time.deltaTime * 15;
+                    Debug.Log(_data.ForwardSpeed);
+                }
+            }
+
+
+
         }
 
         private void MovePlayer()
@@ -82,6 +102,10 @@ namespace Controllers.Player
         {
             rigidbody.velocity = float3.zero;
             rigidbody.angularVelocity = float3.zero;
+        }
+        public void EncapsulatedStop()
+        {
+            StopPlayer();
         }
 
         internal void IsReadyToPlay(bool condition)

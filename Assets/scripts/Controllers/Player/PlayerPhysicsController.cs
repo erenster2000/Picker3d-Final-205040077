@@ -21,8 +21,12 @@ namespace Controllers.Player
 
         #endregion
 
+		private void Update()
+		{
+		
+		}
 
-        private void OnTriggerEnter(Collider other)
+		private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("StageArea"))
             {
@@ -45,6 +49,12 @@ namespace Controllers.Player
                 });
                 return;
             }
+
+			if (other.CompareTag("EndArea"))
+			{ 
+                manager.LastRunEnding();
+			    
+			}
         }
 
         private void OnDrawGizmos()

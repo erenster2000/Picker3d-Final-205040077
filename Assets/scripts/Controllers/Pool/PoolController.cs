@@ -27,12 +27,13 @@ namespace Controllers.Pool
         #region Private Variables
 
         [ShowInInspector] private PoolData _data;
-        [ShowInInspector] private byte _requiredAmount, _collectedCount;
+        [ShowInInspector] private int _requiredAmount, _collectedCount, finalCount;
 
         #endregion
 
         #endregion
 
+        
         private void Awake()
         {
             _data = GetPoolData();
@@ -70,13 +71,20 @@ namespace Controllers.Pool
             SetRequiredAmountToText();
         }
 
+        private void finalCountHold()
+        {
+             finalCount += _collectedCount;
+        }
         private void OnActivateAllAnimations(byte stageID)
         {
             if (stageID != this.stageID) return;
             foreach (var animation in tweenAnimations)
             {
                 animation.DOPlay();
+                
             }
+            finalCountHold();
+            Debug.Log(finalCount);
         }
 
         private void SetRequiredAmount()
@@ -123,5 +131,6 @@ namespace Controllers.Pool
 
             return false;
         }
+       
     }
 }

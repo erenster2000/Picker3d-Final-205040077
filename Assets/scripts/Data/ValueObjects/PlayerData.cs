@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Data.ValueObjects
 {
@@ -31,6 +32,13 @@ namespace Data.ValueObjects
             ForwardForceCounter = forwardForceCounter;
             MiniGameMultiplier = miniGameMultiplier;
         }
+        public void EndSpeed()
+        {
+             ForwardSpeed = MiniGameMultiplier * ForwardSpeed;
+            
+        }
+
+
     }
 
     [Serializable]
@@ -42,5 +50,7 @@ namespace Data.ValueObjects
         {
             ScaleFactor = scaleFactor;
         }
+
+        
     }
 }
